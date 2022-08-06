@@ -9,29 +9,26 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-public class NotesViewModel(
+class NotesViewModel(
     val notesRepo: NotesRepo
-):ViewModel() {
+) : ViewModel() {
+    val notes = notesRepo.getNotes()
+    private val _searchableNotes = MutableStateFlow<List<Note>>(emptyList())
+
+    val searchNotes: StateFlow<List<Note>>? = _searchableNotes
 
 
-    val notes=notesRepo.getNotes()
-
-    private  val _searchableNotes=MutableStateFlow<List<Note>>(emptyList())
-
-    val searchNotes:StateFlow<List<Note>>?=_searchableNotes
-
-
-    fun upsertNote(note: Note)=viewModelScope.launch {
+    fun upsertNote(note: Note) = viewModelScope.launch {
         notesRepo.upsertNote(note)
     }
 
-    fun deleteNote(note: Note)=viewModelScope.launch {
+    fun deleteNote(note: Note) = viewModelScope.launch {
         notesRepo.deleteNote(note)
     }
 
-    fun searchedNotes(searchQuery: String)=viewModelScope.launch {
+    fun searchedNotes(searchQuery: String) = viewModelScope.launch {
         notesRepo.searchInNoteTitle(searchQuery).collect { notesList ->
-          _searchableNotes.emit(notesList)
+            _searchableNotes.emit(notesList)
         }
     }
 

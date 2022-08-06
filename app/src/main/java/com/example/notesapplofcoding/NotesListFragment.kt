@@ -15,18 +15,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapplofcoding.ViewModel.NotesViewModel
 import com.example.notesapplofcoding.databinding.FragmentNotesListBinding
 import kotlinx.coroutines.flow.collect
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class NotesListFragment : Fragment(R.layout.fragment_notes_list) {
     private lateinit var notesAdapter: NotesAdapter
     private lateinit var binding: FragmentNotesListBinding
-    private lateinit var notesViewModel: NotesViewModel
 
+    private val notesViewModel by inject<NotesViewModel>()//viewModel<NotesViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        notesViewModel=(activity as MainActivity).viewModel
+      //  notesViewModel=(activity as MainActivity).viewModel
 
     }
 

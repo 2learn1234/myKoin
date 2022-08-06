@@ -11,17 +11,23 @@ import androidx.navigation.fragment.navArgs
 import com.example.notesapplofcoding.ViewModel.NotesViewModel
 import com.example.notesapplofcoding.data.Note
 import com.example.notesapplofcoding.databinding.FragmentNoteBinding
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NoteFragment : Fragment(R.layout.fragment_note) {
     private lateinit var binding: FragmentNoteBinding
     private val args by navArgs<NoteFragmentArgs>()
-    private lateinit var viewModel: NotesViewModel
+  //  private lateinit var viewModel: NotesViewModel
+  //  private  val viewModel by viewModel<NotesViewModel>()
+    private  val viewModel by inject<NotesViewModel>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+     //    viewModel by viewModel<NotesViewModel>()
+        //viewModel = (activity as (MainActivity)).viewModel
 
-        viewModel = (activity as (MainActivity)).viewModel
 
     }
 

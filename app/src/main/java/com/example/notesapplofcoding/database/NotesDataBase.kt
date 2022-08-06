@@ -12,7 +12,7 @@ abstract class NotesDataBase:RoomDatabase() {
     abstract val noteDao: NoteDao
 
     companion object{
-        @Volatile
+      /*  @Volatile
         var INSTANCE: NotesDataBase?=null
 
         @Synchronized
@@ -25,7 +25,7 @@ abstract class NotesDataBase:RoomDatabase() {
                 ).fallbackToDestructiveMigration().build()
             }
             return INSTANCE!!
-        }
+        }*/
     }
 
 }
